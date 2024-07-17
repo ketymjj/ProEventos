@@ -396,3 +396,60 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist/
+/tmp/
+/out-tsc/
+
+# dependencies
+/node_modules/
+# System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# IDE/Editor specific files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# NativeScript related files and folders
+*.snapshot
+*.dds
+*.xcuserdatad
+*.xcworkspace
+
+# Gradle files
+.gradle
+**/build/
+
+# Webpack files
+webpack.config.js
+webpack.debug.js
+webpack.test.js
+
+# Angular specific
+package-lock.json
+.angular-cli.json
+.npm
+yarn.lock
+
+# Environment variables
+.env
+.env.prod
+.env.dev
+
+# TypeScript
+*.tsbuildinfo
+
+# End of https://www.toptal.com/developers/gitignore/api/angular
