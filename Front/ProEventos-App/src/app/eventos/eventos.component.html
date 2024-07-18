@@ -1,11 +1,73 @@
-<h1>Eventos de component</h1>
+<h2>Eventos</h2>
 
+<hr>
 
-
-
-<div *ngFor="let evento of eventos">
-  <p><b>Tema: </b> {{evento.tema}}</p>
-  <p><b>Local: </b> {{evento.local}}</p>
-  <hr>
+<div class="row row-cols-lg-auto g-3 align-items-center">
+  <div>
+    <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
+    <div class="input-group">
+      <label class="mr-2"><h3>Filtro:</h3></label>
+      <input type="text" class="form-control" placeholder="buscar"
+      [(ngModel)]="filtroLista">
+    </div>
+  </div>
 </div>
+
+<hr>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+
+      <th><button type="button" class="btn btn-outline-light btn-sm"
+        (click)="alterarImagem()">
+        {{!exibirImagem ? 'mostrar': 'ocultar'}}
+      </button>
+     </th>
+      <th class="text-center" scope="col">#</th>
+
+      <th class="text-center" scope="col">Tema</th>
+      <th class="text-center" scope="col">Local</th>
+      <th class="text-center" scope="col">Data</th>
+      <th class="text-center" scope="col">Qtd Pessoas</th>
+      <th class="text-center" scope="col">Lote</th>
+      <th class="text-center" scope="col">Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="eventos && eventos.length">
+    <tr *ngFor="let evento of eventosFiltrados">
+
+      <td>
+        <img [collapse]="!exibirImagem"
+        [isAnimated]="true"
+        src="/assets/{{evento.imagemURL}}"
+        [style.width.px]="larguraImagem"
+        [style.margin.px]="margemhImagem"
+        >
+      </td>
+      <th class="text-center" scope="row">{{evento.eventoId}}</th>
+
+
+      <td class="text-center">{{evento.tema}}</td>
+      <td class="text-center">{{evento.local}}</td>
+      <td class="text-center">{{evento.dataEvento}}</td>
+      <td class="text-center">{{evento.qtdPessoas}}</td>
+      <td class="text-center">{{evento.lote}}</td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
+        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!eventos.length">
+    <tr>
+      <td colspan="8" class="text-center"></td>
+      <h4>
+         Nenhum evento encontrado!
+      </h4>
+    </tr>
+  </tfoot>
+</table>
+
 
