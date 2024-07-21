@@ -1,6 +1,4 @@
-<h2>Eventos</h2>
-
-<hr>
+<app-titulo [titulo]="'Eventos'"></app-titulo>
 
 <div class="row row-cols-lg-auto g-3 align-items-center">
   <div>
@@ -21,11 +19,11 @@
 
       <th><button type="button" class="btn btn-outline-light btn-sm"
         (click)="alterarImagem()">
+        <i class="{{!exibirImagem ? 'fa fa-eye': 'fa fa-eye-slash'}}"></i>
         {{!exibirImagem ? 'mostrar': 'ocultar'}}
       </button>
      </th>
       <th class="text-center" scope="col">#</th>
-
       <th class="text-center" scope="col">Tema</th>
       <th class="text-center" scope="col">Local</th>
       <th class="text-center" scope="col">Data</th>
@@ -45,29 +43,42 @@
         [style.margin.px]="margemhImagem"
         >
       </td>
-      <th class="text-center" scope="row">{{evento.eventoId}}</th>
-
-
+      <th class="text-center">{{evento.id}}</th>
       <td class="text-center">{{evento.tema}}</td>
       <td class="text-center">{{evento.local}}</td>
-      <td class="text-center">{{evento.dataEvento}}</td>
+      <td class="text-center">{{evento.dataEvento | DateFormatPipe }}</td>
       <td class="text-center">{{evento.qtdPessoas}}</td>
-      <td class="text-center">{{evento.lote}}</td>
-      <td>
-        <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
-        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+      <td class="text-center">{{evento.lotes.nome}}</td>
 
-      </td>
+      <td style="width: 80px;">
+        <button type="button" class="btn btn-primary btn-sm mr-2" data-bs-toggle="tooltip" title="Editar">
+          <i class ="fa fa-edit"></i></button>
+        <button class="btn btn-danger btn-sm"
+        data-bs-toggle="tooltip" title="Excluir" (click)="openModal(template)" >
+          <i class ="fa fa-trash"></i></button>
+   </td>
     </tr>
   </tbody>
+  <br>
   <tfoot *ngIf="!eventos.length">
     <tr>
-      <td colspan="8" class="text-center"></td>
+      <td colspan="8" class="text-center">
       <h4>
          Nenhum evento encontrado!
       </h4>
+    </td>
     </tr>
   </tfoot>
+
 </table>
+
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que você quer deletar este Evento?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>
 
 
