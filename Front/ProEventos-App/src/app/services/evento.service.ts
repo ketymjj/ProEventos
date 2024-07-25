@@ -7,6 +7,9 @@ import { Evento } from '../models/Evento';
   //{providedIn: 'root'}
 )
 export class EventoService {
+  deleteEvento(eventoId: number) {
+    throw new Error('Method not implemented.');
+  }
 baseURL = 'https://localhost:5001/api/eventos';
 
 constructor(private http: HttpClient) { }
